@@ -288,8 +288,13 @@ int InterfaceUsuario::dadoEntrada() {
 
 #ifdef ATLYSKERNEL
 int InterfaceUsuario::dadoEntrada() {
-    int entrada;
-    cin >> entrada;
-    return entrada;
+    unsigned int entrada;
+    if(*data & (1 << 16)){ // Faz uma máscara com 0x00010000 para verificar se o bit 16 está alto (BTNU), botão definido para operação log.
+        entrada = 7;
+        return entrada;
+    } else {
+        entrada = *data >> 8; // entrada recebe data deslocado de 8 bits, que irá coincindir com as opções de entrada, menos o log.
+        return entrada;
+    }
 }
 #endif
