@@ -1,4 +1,5 @@
 #include "InterfaceUsuario.h"
+#include "Oled.h"
 #include "config.h"
 #include <iostream>
 using namespace std;
@@ -33,6 +34,13 @@ void InterfaceUsuario::imprimirLista() const {
         atual = atual->proximo;
         i += 1;
     }
+    oledClear();
+    printString("Lista Encadeada...");
+    delay(1000);
+    oledClear();
+    string mensagemLista = "Existem" + to_string(i) + "elementos na lista."
+    printString(mensagemLista);
+    delay(1000);
 }
 #endif
 
@@ -49,11 +57,17 @@ void InterfaceUsuario::resetar() {
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::resetar() {
-    cout << "Maquina resetada. Saldo zerado.\n";
+    mensagem =  "Maquina resetada. Saldo zerado.";
     int hour = clock.getHours();
     int minute = clock.getMinutes();
     int seconds = clock.getSeconds();
-    cout << "Horario: " << hour << ":" << minute << ":" << seconds << "\n";
+    string horario = "Horario:" + to_string(hour) + ":" + to_string(minute) + ":" + to_string(seconds);
+    oledClear();
+    printString(mensagem);
+    delay(1000);
+    oledClear();
+    printString(horario);
+    delay(1000);
     lista->limpar();
 }
 #endif
@@ -72,12 +86,17 @@ void InterfaceUsuario::liberarMEET(float saldo) {
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::liberarMEET(float saldo) {
-    cout << "Refrigerante MEET liberado. Saldo zerado.\n";
+    mensagem  "MEET liberado. Saldo zerado.";
     int hour = clock.getHours();
     int minute = clock.getMinutes();
     int seconds = clock.getSeconds();
-    cout << "Horario: " << hour << ":" << minute << ":" << seconds << "\n";
-    string horario = clock.showClock();
+    string horario = "Horario:" + to_string(hour) + ":" + to_string(minute) + ":" + to_string(seconds);
+    oledClear();
+    printString(mensagem);
+    delay(1000);
+    oledClear();
+    printString(horario);
+    delay(1000);
     lista->adicionarAoFim(horario, "compra_meet", saldo);
 }
 #endif
@@ -96,12 +115,17 @@ void InterfaceUsuario::liberarETIRPS(float saldo) {
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::liberarETIRPS(float saldo) {
-    cout << "Refrigerante ETIRPS liberado. Saldo zerado.\n";
+    mensagem = "ETIRPS liberado. Saldo zerado.";
     int hour = clock.getHours();
     int minute = clock.getMinutes();
     int seconds = clock.getSeconds();
-    cout << "Horario: " << hour << ":" << minute << ":" << seconds << "\n";
-    string horario = clock.showClock();
+    string horario = "Horario:" + to_string(hour) + ":" + to_string(minute) + ":" + to_string(seconds);
+    oledClear();
+    printString(mensagem);
+    delay(1000);
+    oledClear();
+    printString(horario);
+    delay(1000);
     lista->adicionarAoFim(horario, "compra_etirps", saldo);
 }
 #endif
@@ -114,7 +138,10 @@ void InterfaceUsuario::saldoInsuficiente(float saldo) {
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::saldoInsuficiente(float saldo) {
-    cout << "Saldo insuficiente. Faltam R$" << 1.50f - saldo << ".\n";
+    mensagem = "Saldo insuficiente. Faltam R$" + to_string(1.50f - saldo) + ".";
+    oledClear();
+    printString(mensagem);
+    delay(1000);
 }
 #endif
 
@@ -130,11 +157,17 @@ void InterfaceUsuario::trocoDevolvido(float troco){
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::trocoDevolvido(float troco){
-    cout << "Troco devolvido: R$" << troco << ".\n";
+    mensagem = "Troco devolvido: R$" + to_string(troco) + ".";
     int hour = clock.getHours();
     int minute = clock.getMinutes();
     int seconds = clock.getSeconds();
-    cout << "Horario: " << hour << ":" << minute << ":" << seconds << "\n";
+    string horario = "Horario:" + to_string(hour) + ":" + to_string(minute) + ":" + to_string(seconds);
+    oledClear();
+    printString(mensagem);
+    delay(1000);
+    oledClear();
+    printString(horario);
+    delay(1000);
 }
 #endif
 
@@ -146,7 +179,10 @@ void InterfaceUsuario::imprimirS000(){
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::imprimirS000(){
-    cout << "Estado atual: S000";
+    mensagem = "Estado atual: S000";
+    oledClear();
+    printString(mensagem);
+    delay(1000);
 }
 #endif
 
@@ -158,7 +194,10 @@ void InterfaceUsuario::imprimirS025(){
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::imprimirS025(){
-    cout << "Estado atual: S025";
+    mensagem = "Estado atual: S025";
+    oledClear();
+    printString(mensagem);
+    delay(1000);
 }
 #endif
 
@@ -170,7 +209,10 @@ void InterfaceUsuario::imprimirS050(){
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::imprimirS050(){
-    cout << "Estado atual: S050";
+    mensagem = "Estado atual: S050";
+    oledClear();
+    printString(mensagem);
+    delay(1000);
 }
 #endif
 
@@ -182,7 +224,10 @@ void InterfaceUsuario::imprimirS075(){
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::imprimirS075(){
-    cout << "Estado atual: S075";
+    mensagem = "Estado atual: S075";
+    oledClear();
+    printString(mensagem);
+    delay(1000);
 }
 #endif
 
@@ -194,7 +239,10 @@ void InterfaceUsuario::imprimirS100(){
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::imprimirS100(){
-    cout << "Estado atual: S100";
+    mensagem = "Estado atual: S100";
+    oledClear();
+    printString(mensagem);
+    delay(1000);
 }
 #endif
 
@@ -206,7 +254,10 @@ void InterfaceUsuario::imprimirS125(){
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::imprimirS125(){
-    cout << "Estado atual: S125";
+    mensagem = "Estado atual: S125";
+    oledClear();
+    printString(mensagem);
+    delay(1000);
 }
 #endif
 
@@ -218,7 +269,10 @@ void InterfaceUsuario::imprimirS150(){
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::imprimirS150(){
-    cout << "Estado atual: S150";
+    mensagem = "Estado atual: S150";
+    oledClear();
+    printString(mensagem);
+    delay(1000);
 }
 #endif
 
@@ -234,11 +288,39 @@ void InterfaceUsuario::imprimirMenu(){
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::imprimirMenu(){
-    cout << "Escolha um comando:\n";
-    cout << "0: NADA.\n1: Inserir Moeda de R$0,25. \n2: Inserir Moeda de R$0,50.\n";
-    cout << "3: Inserir Moeda de R$1,00. \n4: Devolver Moedas. \n";
-    cout << "5: Escolher Refrigerante MEET.\n6: Escolher Refrigerante ETIRPS.\n7: Apresentar log de operacoes.\n";
-    cout << "Aguardando escolha do usuario...\n";
+    mensagem = "Escolha um comando:";
+    oledClear();
+    setLine(0);
+    printString(mensagem);
+    mensagem = "0: NADA.";
+    setLine(1);
+    printString(mensagem);
+    mensagem = "1: Inserir Moeda de R$0,25.";
+    setLine(2);
+    printString(mensagem);
+    mensagem = "2: Inserir Moeda de R$0,50.";
+    setLine(3);
+    printString(mensagem);
+    mensagem = "3: Inserir Moeda de R$1,00.";
+    setLine(4);
+    printString(mensagem);
+    mensagem = "4: Devolver Moedas.";
+    setLine(5);
+    printString(mensagem);
+    mensagem = "5: Escolher Refrigerante MEET.";
+    setLine(6);
+    printString(mensagem);
+    mensagem = "6: Escolher Refrigerante ETIRPS.";
+    setLine(7);
+    printString(mensagem);
+    mensagem = "7: Apresentar log de operacoes.";
+    setLine(8);
+    printString(mensagem);
+    mensagem = "Aguardando escolha do usuario...";
+    setLine(9);
+    printString(mensagem);
+    delay(1000);
+    setLine(0);
 }
 #endif
 
@@ -250,7 +332,10 @@ void InterfaceUsuario::opcaoInvalida(){
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::opcaoInvalida(){
-    cout << "Opçao invalida. Tente novamente.\n";
+    mensagem = "Opçao invalida. Tente novamente.";
+    oledClear();
+    printString(mensagem);
+    delay(1000);
 }
 #endif
 
@@ -262,7 +347,10 @@ void InterfaceUsuario::imprimirSaldo(float saldo){
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::imprimirSaldo(float saldo){
-    cout << " | Saldo Atual: R$" << saldo << " | Faltam R$" << max(0.0f, 1.50f - saldo) << ".\n";
+    mensagem = " | Saldo Atual: R$" + to_string(saldo) + " | Faltam R$" + to_string(max(0.0f, 1.50f - saldo)) + ".";
+    oledClear();
+    printString(mensagem);
+    delay(1000);
 }
 #endif
 
@@ -274,7 +362,10 @@ void InterfaceUsuario::devolveMoedas(float saldo) {
 
 #ifdef ATLYSKERNEL
 void InterfaceUsuario::devolveMoedas(float saldo) {
-    cout << "Devolvendo R$" << saldo << " em moedas.\n";
+    mensagem = "Devolvendo R$" + to_string(saldo) + " em moedas.";
+    oledClear();
+    printString(mensagem);
+    delay(1000);
 }
 #endif
 
