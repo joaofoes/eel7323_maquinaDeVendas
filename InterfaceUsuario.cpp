@@ -41,6 +41,12 @@ void InterfaceUsuario::imprimirLista() const {
     string mensagemLista = "Existem" + to_string(i) + "elementos na lista."
     printString(mensagemLista);
     delay(1000);
+    for(j = 0; j < 10; j++){
+        output = i;
+        delay(500);
+        output = 0;
+    }
+    output = 0;
 }
 #endif
 
